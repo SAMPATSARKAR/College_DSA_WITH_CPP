@@ -69,8 +69,8 @@ int main() {
     while(t != nullptr){
 
         cout<<t->val<<"->";
-        t = t->next ;
-    }
+        t = t->next;
+    }cout<<endl;
 
     return 0;
 }
