@@ -1,46 +1,85 @@
-#include <iostream>
-using namespace std ;
+class Node {
+  public:
+    int data;
+    Node* prev;
+    Node* next;
 
-class CustomException : public std::exception {
-    
-    private :
-        string msg ;
-        int code ;
-    
-    public : 
-    CustomException(string msg , int code){
-        this->code = code ;
-        this->msg  = msg ;
+    Node(int x) {
+        data = x;
+        prev = next = nullptr;
     }
-    
-    const char* what() const noexcept override {
-        
-        return this->msg.c_str() ;
+};
+
+class myDeque {
+    Node* front;
+    Node* rear;
+  public:
+    myDeque() {
+        front = NULL;
+        rear = NULL;
     }
-    
-    
-      int getStatusCode() const{
-        return this->code ;
-    }
-    
-} ; 
-int main() {
-    
-    int x ,y ;
-    cin>>x>>y ;
-    int ans ;
-    try {
-        if(y == 0){
-            throw  CustomException("Zero division error " , 400) ; 
+
+    void insertFront(int x) {
+        Node* newNode = new Node(x);
+        if(front == NULL){
+            front = newNode;
+            rear = newNode;
+            return;
         }
-        ans = x/y ;
-         cout<<ans ;
+        newNode->next = front;
+        front->prev = newNode;
+        front = newNode;
     }
-    catch(const  CustomException &e) {
-        cout<<e.what()<<"status code : "<<e. getStatusCode() ;
-    }
-    
-   
 
-    return 0;
-}
+    void insertRear(int x) {
+        Node* newNode = new Node(x);
+        if(rear == NULL){
+            front = newNode;
+            rear = newNode;
+        }else{
+        rear->next = newNode;
+        newNode->prev = rear;
+        rear = newNode;
+        }
+    }
+
+    void deleteFront() {
+        if(front == NULL){
+            return;
+        }
+        front = front->next;
+        if(front == NULL){
+            rear = NULL;
+        }else{
+            front->prev = NULL;
+        }
+    }
+
+    void deleteRear() {
+        if(rear == NULL){
+            return;
+        }
+        Node* temp = rear;
+        rear = rear->prev;
+        if(rear == NULL){
+            front = NULL;
+        }else{
+        rear->next = NULL;
+        }
+        delete temp;
+    }
+
+    int getFront() {
+        if(front == NULL){
+            return -1;
+        }
+        return front->data;
+    }
+
+    int getRear() {
+        if(rear == NULL){
+            return -1;
+        }
+        return rear->data;
+    }
+};
