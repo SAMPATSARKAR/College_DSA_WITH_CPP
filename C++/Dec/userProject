@@ -1,0 +1,51 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<chrono> 
+uisng namespace std ;
+
+enum class AccountStatus {
+    ACTIVE,
+    BLOCKED,
+    CLOSED
+};
+
+class Notification {
+    public:
+    string message  ;
+    chrono::system_clock::time_point timestamp ;
+    
+    Notification(string message){
+        this->message = message ;
+        this->timestamp = chrono::system_clock.now() ;
+    }
+    
+}
+
+class User {
+protected:
+    int userId;
+    string name;
+    string email;
+    AccountStatus status;
+    
+public:
+    User(int id,string n, string e)
+       {
+           this->userId = userId ;
+           this->name = name ;
+           this->email = email ;
+           this->status = AccountStatus::ACTIVE ;
+       }
+
+    virtual void displayRole() = 0;     // PURE VIRTUAL → Abstraction
+
+    AccountStatus getStatus() const { return status; }
+    void setStatus(AccountStatus s) { status = s; }
+};
+
+
+int main() {
+    
+
+    return 0;
+}
