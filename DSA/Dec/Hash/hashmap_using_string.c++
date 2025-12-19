@@ -8,7 +8,7 @@ class HashMap{
         size =100;
         table.resize(size);
     }
-    int hashFunction( string& key){
+    int hashFunction( string& key){//rolling hashing
     
         int ch=0;
         int size=key.size();
@@ -30,6 +30,15 @@ class HashMap{
         int index = hashFunction(key);
         table[index].push_back({key, value});
     }
+    void remove(string &key){
+        int index = hashFunction(key);
+        for(int i=0;i<table[index].size();i++){
+            if(key == table[index][i].first){
+                table[index].erase(table[index].begin()+i);
+            }
+        }
+    }
+    //s.find()
 };
 int main(){
         HashMap a;
@@ -37,6 +46,8 @@ int main(){
         a.push("1",21);
         a.push("2",23);
         a.push("3",24);
+        cout<<a.get("1")<<endl;
+        remove("1");
         cout<<a.get("1")<<endl;
         return 0;
 }

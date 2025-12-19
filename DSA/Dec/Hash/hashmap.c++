@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 //hashmap using chaining
+//open addresing technique
+    //--- linear probing, quadratic probing, double hashing
+
+// unodered _set -- only key
+        //finding element in set - s.find()
+        //to iterate till end - s.end()
+        // if(s.find(10) != s.end())->found till end
+        
+//unordered_map == both key:val
+
 class HashMap{
     public:
     vector<vector<pair<int,int>>> table;
@@ -19,6 +29,7 @@ class HashMap{
         }
         return -1;
     }
+
     void push(int key, int value){
         int index = key%size;//hashing
         table[index].push_back(pair(key,value));
