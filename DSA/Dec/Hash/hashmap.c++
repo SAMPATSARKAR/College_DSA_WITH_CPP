@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-//hashmap using chaining
+//hashmap using chaining-best case:- O(1), worst:- O(n);
 //open addresing technique
     //--- linear probing, quadratic probing, double hashing
 
